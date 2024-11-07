@@ -24,9 +24,9 @@
   </style>
 </head>
 <body>
-  <!-- Questions container -->
+
   <div id="questions">
-    <!-- Individual questions -->
+   
     <div class="question" id="q1">
       Question 1: What is your favorite color?<br>
       <input type="radio" id="q1-opt1" name="q1" value="Red">
@@ -73,16 +73,16 @@
     let answers = {};
     
     function nextQuestion() {
-      // Get selected answer
+     
       let answer = document.querySelector(`input[name=q${currentQuestion}]:checked`);
       
       if (answer) {
         answers[`q${currentQuestion}`] = answer.value;
         
-        // Hide current question
+       
         document.getElementById(`q${currentQuestion}`).style.display = "none";
         
-        // Show next question
+        
         currentQuestion++;
         document.getElementById(`q${currentQuestion}`).style.display = "block";
       } else {
@@ -91,13 +91,13 @@
     }
     
     function submitAnswers() {
-      // Get selected answer for last question
+     
       let answer = document.querySelector(`input[name=q${currentQuestion}]:checked`);
       
       if (answer) {
         answers[`q${currentQuestion}`] = answer.value;
         console.log(answers);
-        // Submit answers to server or display results
+        
         alert("Thank you for taking the quiz!");
       } else {
         alert("Please select an answer.");
