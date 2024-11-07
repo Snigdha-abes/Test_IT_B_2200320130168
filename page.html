@@ -1,0 +1,110 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz</title>
+  <style>
+    .question {
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    button {
+      background-color: #4CAF50;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <!-- Questions container -->
+  <div id="questions">
+    <!-- Individual questions -->
+    <div class="question" id="q1">
+      Question 1: What is your favorite color?<br>
+      <input type="radio" id="q1-opt1" name="q1" value="Red">
+      <label for="q1-opt1">Red</label><br>
+      <input type="radio" id="q1-opt2" name="q1" value="Blue">
+      <label for="q1-opt2">Blue</label><br>
+      <input type="radio" id="q1-opt3" name="q1" value="Green">
+
+      <label for="q1-opt3">Green</label><br>
+      <button id="next1" onclick="nextQuestion()">Next</button>
+    </div>
+    
+    <div class="question" id="q2" style="display:none;">
+      Question 2: How old are you?<br>
+      <input type="radio" id="q2-opt1" name="q2" value="18-24">
+
+      <label for="q2-opt1">18-24</label><br>
+      <input type="radio" id="q2-opt2" name="q2" value="25-34">
+
+      <label for="q2-opt2">25-34</label><br>
+      <input type="radio" id="q2-opt3" name="q2" value="35+">
+
+      <label for="q2-opt3">35+</label><br>
+      <button id="next2" onclick="nextQuestion()">Next</button>
+    </div>
+    
+    <div class="question" id="q3" style="display:none;">
+      Question 3: Where are you from?<br>
+      <input type="radio" id="q3-opt1" name="q3" value="USA">
+
+      <label for="q3-opt1">USA</label><br>
+      <input type="radio" id="q3-opt2" name="q3" value="Europe">
+
+      <label for="q3-opt2">Europe</label><br>
+      <input type="radio" id="q3-opt3" name="q3" value="Other">
+
+      <label for="q3-opt3">Other</label>
+      <button id="submit" onclick="submitAnswers()">Submit</button>
+    </div>
+  </div>
+  
+  <script>
+    let currentQuestion = 1;
+    let answers = {};
+    
+    function nextQuestion() {
+      // Get selected answer
+      let answer = document.querySelector(`input[name=q${currentQuestion}]:checked`);
+      
+      if (answer) {
+        answers[`q${currentQuestion}`] = answer.value;
+        
+        // Hide current question
+        document.getElementById(`q${currentQuestion}`).style.display = "none";
+        
+        // Show next question
+        currentQuestion++;
+        document.getElementById(`q${currentQuestion}`).style.display = "block";
+      } else {
+        alert("Please select an answer.");
+      }
+    }
+    
+    function submitAnswers() {
+      // Get selected answer for last question
+      let answer = document.querySelector(`input[name=q${currentQuestion}]:checked`);
+      
+      if (answer) {
+        answers[`q${currentQuestion}`] = answer.value;
+        console.log(answers);
+        // Submit answers to server or display results
+        alert("Thank you for taking the quiz!");
+      } else {
+        alert("Please select an answer.");
+      }
+    }
+  </script>
+</body>
+</html>
+
+
